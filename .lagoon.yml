@@ -17,7 +17,7 @@ tasks:
                 # no drupal installed, install umami and some other things
                 drush -y si demo_umami --force
                 drush -y upwd admin --password=admin
-                drush -y en admin_toolbar
+                drush -y en admin_toolbar admin_toolbar_tools
                 drush -y config-set system.site name 'Drupal4Gov Training - sponsored by amazee.io'
             fi
         service: cli

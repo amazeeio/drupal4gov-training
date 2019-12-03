@@ -13,7 +13,7 @@ tasks:
     - run:
         name: IF no Drupal installed and we install umami
         command: |
-            if tables=$(drush sqlq 'show tables;') && [ -z "$tables" ]; then
+            if tables=$(drush sqlq "show tables like 'node';") && [ -z "$tables" ]; then
                 # no drupal installed, install umami and some other things
                 drush -y si demo_umami --force
                 drush -y upwd admin --password=admin

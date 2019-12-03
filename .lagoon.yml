@@ -30,13 +30,3 @@ tasks:
         name: drush cr
         command: drush -y cr
         service: cli
-
-
-
-environments:
-  master:
-    cronjobs:
-      - name: drush cron
-        schedule: "*/15 * * * *"
-        command: drush cron
-        service: cli

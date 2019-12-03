@@ -2,7 +2,7 @@ version: '2.3'
 
 x-lagoon-project:
   # Lagoon project name (leave `&lagoon-project` when you edit this)
-  &lagoon-project drupal-example
+  &lagoon-project drupal4gov-training-base
 
 x-volumes:
   &default-volumes
@@ -14,7 +14,7 @@ x-environment:
   &default-environment
     LAGOON_PROJECT: *lagoon-project
     # Route that should be used locally, if you are using pygmy, this route *must* end with .docker.amazee.io
-    LAGOON_ROUTE: http://drupal-example.docker.amazee.io
+    LAGOON_ROUTE: http://drupal4gov-training-base.docker.amazee.io
     # Uncomment if you like to have the system behave like in production
     #LAGOON_ENVIRONMENT_TYPE: production
     # Uncomment to enable xdebug and then restart via `docker-compose up -d`
@@ -59,7 +59,6 @@ services:
       - cli # basically just tells docker-compose to build the cli first
     environment:
       << : *default-environment # loads the defined environment variables from the top
-      LAGOON_LOCALDEV_URL: nginx-drupal-example.docker.amazee.io # generate another route for nginx, by default we go to varnish
     networks:
       - amazeeio-network
       - default
@@ -91,38 +90,6 @@ services:
     << : *default-user # uses the defined user from top
     environment:
       << : *default-environment
-
-  redis:
-    image: amazeeio/redis
-    labels:
-      lagoon.type: redis
-    << : *default-user # uses the defined user from top
-    environment:
-      << : *default-environment
-
-  solr:
-    image: amazeeio/solr:6.6-drupal
-    labels:
-      lagoon.type: solr
-    ports:
-      - "8983" # exposes the port 8983 with a random local port, find it with `docker-compose port solr 8983`
-    environment:
-      << : *default-environment
-
-
-  varnish:
-    image: amazeeio/varnish-drupal
-    labels:
-      lagoon.type: varnish
-    links:
-      - nginx # links varnish to the nginx in this docker-compose project, or it would try to connect to any nginx running in docker
-    << : *default-user # uses the defined user from top
-    environment:
-      << : *default-environment
-      VARNISH_BYPASS: "true" # by default we bypass varnish, change to 'false' or remove in order to tell varnish to cache if possible
-    networks:
-      - amazeeio-network
-      - default
 
 networks:
   amazeeio-network:

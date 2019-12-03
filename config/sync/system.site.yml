@@ -1,5 +1,5 @@
-uuid: e20aa53c-f901-44d3-b2a7-2a09e4fabe0a
-name: Site-Install
+uuid: 53113f8b-e63f-4dad-9ae2-bd30567c6b55
+name: 'Drupal4Fov Training - sponsored by amazee.io'
 mail: admin@example.com
 slogan: ''
 page:
@@ -11,4 +11,4 @@ weight_select_max: 100
 langcode: en
 default_langcode: en
 _core:
-  default_config_hash: yXadRE77Va-G6dxhd2kPYapAvbnSvTF6hO4oXiOEynI
+  default_config_hash: yTxtFqBHnEWxQswuWvkjE8mKw2t8oKuCL1q8KnfHuGE
